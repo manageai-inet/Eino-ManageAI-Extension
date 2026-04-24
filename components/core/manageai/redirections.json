@@ -1,0 +1,103 @@
+{
+    "aliasModelIds": [
+        {"alias": "qwen2.5-72b-instruct",           "modelId": "qwen/qwen2.5-72b-instruct"},
+        {"alias": "qwen2.5-vl-72b-instruct",        "modelId": "qwen/qwen2.5-vl-72b-instruct"},
+        {"alias": "qwen2.5-72b",                    "modelId": "qwen/qwen2.5-vl-72b-instruct"},
+        {"alias": "qwen2.5",                        "modelId": "qwen/qwen2.5-vl-72b-instruct"},
+        {"alias": "qwen3-235b-a22b",                "modelId": "qwen/qwen3-235b-a22b"},
+        {"alias": "qwen3-235b-a22b-instruct-2507",  "modelId": "qwen/qwen3-235b-a22b-instruct-2507"},
+        {"alias": "qwen3-vl-235b-a22b-instruct",    "modelId": "qwen/qwen3-vl-235b-a22b-instruct"},
+        {"alias": "qwen3-235b",                     "modelId": "qwen/qwen3-vl-235b-a22b-instruct"},
+        {"alias": "qwen3",                          "modelId": "qwen/qwen3-vl-235b-a22b-instruct"},
+        {"alias": "qwen3.5-397b-a17b",              "modelId": "qwen/qwen3.5-397b-a17b"},
+        {"alias": "qwen3.5-397b-think",             "modelId": "qwen/qwen3.5-397b-a17b"},
+        {"alias": "qwen3.5-think",                  "modelId": "qwen/qwen3.5-397b-a17b"},
+        {"alias": "qwen3.5-397b-a17b-non_thinking", "modelId": "qwen/qwen3.5-397b-a17b-non_thinking"},
+        {"alias": "qwen3.5-397b",                   "modelId": "qwen/qwen3.5-397b-a17b-non_thinking"},
+        {"alias": "qwen3.5",                        "modelId": "qwen/qwen3.5-397b-a17b-non_thinking"},
+        {"alias": "qwen3-coder-480b-a35b-instruct", "modelId": "qwen/qwen3-coder-480b-a35b-instruct"},
+        {"alias": "qwen3-coder-480b",               "modelId": "qwen/qwen3-coder-480b-a35b-instruct"},
+        {"alias": "qwen3-coder",                    "modelId": "qwen/qwen3-coder-480b-a35b-instruct"},
+        {"alias": "medgemma-27b-it",                "modelId": "google/medgemma-27b-it"},
+        {"alias": "medgemma-27b",                   "modelId": "google/medgemma-27b-it"},
+        {"alias": "medgemma",                       "modelId": "google/medgemma-27b-it"},
+        {"alias": "gpt-oss-120b",                   "modelId": "openai/gpt-oss-120b"},
+        {"alias": "gpt-oss",                        "modelId": "openai/gpt-oss-120b"},
+        {"alias": "typhoon-ocr-7b",                 "modelId": "scb10x/typhoon-ocr-7b"},
+        {"alias": "typhoon-ocr",                    "modelId": "scb10x/typhoon-ocr-7b"},
+        {"alias": "qwen3-embedding-8b",             "modelId": "qwen/qwen3-embedding-8b"},
+        {"alias": "qwen3-reranker-8b",              "modelId": "qwen/qwen3-reranker-8b"} 
+    ],
+    "redirections": [
+        {
+            "modelId": "qwen/qwen2.5-72b-instruct",
+            "redirectTo": "Qwen/Qwen2.5-VL-72B-Instruct",
+            "multitoolRedirectTo": "Qwen/Qwen3.5-397B-A17B-non_thinking"
+        },
+        {
+            "modelId": "qwen/qwen2.5-vl-72b-instruct",
+            "redirectTo": "Qwen/Qwen2.5-VL-72B-Instruct",
+            "multitoolRedirectTo": "Qwen/Qwen3.5-397B-A17B-non_thinking"
+        },
+        {
+            "modelId": "qwen/qwen3-235b-a22b",
+            "redirectTo": "Qwen/Qwen3-235B-A22B", 
+            "multitoolRedirectTo": null
+        },
+        {
+            "modelId": "qwen/qwen3-235b-a22b-instruct-2507",
+            "redirectTo": "Qwen/Qwen3.5-397B-A17B-non_thinking",
+            "multitoolRedirectTo": null
+        },
+        {
+            "modelId": "qwen/qwen3-vl-235b-a22b-instruct",
+            "redirectTo": "Qwen/Qwen3-VL-235B-A22B-Instruct",
+            "multitoolRedirectTo": null
+        },
+        {
+            "modelId": "qwen/qwen3.5-397b-a17b",
+            "redirectTo": "Qwen/Qwen3.5-397B-A17B",
+            "multitoolRedirectTo": null
+        },
+        {
+            "modelId": "qwen/qwen3.5-397b-a17b-thinking",
+            "redirectTo": "Qwen/Qwen3.5-397B-A17B",
+            "multitoolRedirectTo": null
+        },
+        {
+            "modelId": "qwen/qwen3.5-397b-a17b-non_thinking",
+            "redirectTo": "Qwen/Qwen3.5-397B-A17B-non_thinking",
+            "multitoolRedirectTo": null
+        },
+        {
+            "modelId": "qwen/qwen3-coder-480b-a35b-instruct",
+            "redirectTo": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+            "multitoolRedirectTo": null
+        },
+        {
+            "modelId": "google/medgemma-27b-it",
+            "redirectTo": "google/medgemma-27b-it",
+            "multitoolRedirectTo": null
+        },
+        {
+            "modelId": "openai/gpt-oss-120b",
+            "redirectTo": "openai/gpt-oss-120b",
+            "multitoolRedirectTo": null
+        },
+        {
+            "modelId": "scb10x/typhoon-ocr-7b",
+            "redirectTo": "scb10x/typhoon-ocr-7b",
+            "multitoolRedirectTo": null
+        },
+        {
+            "modelId": "qwen/qwen3-embedding-8b",
+            "redirectTo": "Qwen/Qwen3-Embedding-8B",
+            "multitoolRedirectTo": null
+        },
+        {
+            "modelId": "qwen/qwen3-reranker-8b",
+            "redirectTo": "Qwen/Qwen3-Reranker-8B",
+            "multitoolRedirectTo": null        
+        }
+    ]
+}
