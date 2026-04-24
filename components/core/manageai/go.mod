@@ -1,15 +1,10 @@
-module github.com/manageai/ai-assistant/eino-manageai-ext/components/core/manageai
+module github.com/manageai-inet/Eino-ManageAI-Extension/components/core/manageai
 
 go 1.24.0
 
 require (
 	github.com/eino-contrib/jsonschema v1.0.3
 	github.com/google/uuid v1.6.0
-)
-
-require (
-	github.com/josharian/intern v1.0.0 // indirect
-	github.com/kr/text v0.2.0 // indirect
 )
 
 require (
