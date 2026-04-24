@@ -41,13 +41,13 @@ A Go client library for interacting with the ManageAI AI Router service. This pa
 To install the ManageAI Go client, use `go get` to add it to your project:
 
 ```bash
-go get github.com/manageai/ai-assistant/eino-manageai-ext/components/core/manageai@latest
+go get github.com/manageai-inet/Eino-ManageAI-Extension/components/core/manageai@latest
 ```
 
 Or to use a specific version:
 
 ```bash
-go get github.com/manageai/ai-assistant/eino-manageai-ext/components/core/manageai@v1.0.0
+go get github.com/manageai-inet/Eino-ManageAI-Extension/components/core/manageai@v1.0.0
 ```
 
 After installation, run `go mod tidy` to ensure all dependencies are properly resolved:
@@ -64,7 +64,7 @@ package main
 import (
     "fmt"
     "log"
-    "github.com/manageai/ai-assistant/eino-manageai-ext/components/core/manageai"
+    "github.com/manageai-inet/Eino-ManageAI-Extension/components/core/manageai"
 )
 
 func main() {
@@ -503,7 +503,7 @@ Models are automatically redirected based on capabilities:
 Comprehensive error types for different scenarios:
 
 ```go
-import "github.com/manageai/ai-assistant/eino-manageai-ext/components/core/manageai"
+import "github.com/manageai-inet/Eino-ManageAI-Extension/components/core/manageai"
 
 // API errors
 if apiErr, ok := err.(*manageai.APIError); ok {
