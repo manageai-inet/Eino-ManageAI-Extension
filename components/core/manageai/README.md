@@ -6,6 +6,7 @@ A Go client library for interacting with the ManageAI AI Router service. This pa
 
 - [Features](#features)
 - [Installation](#installation)
+- [Environment Variables](#environment-variables)
 - [Quick Start](#quick-start)
 - [Core Components](#core-components)
   - [Client](#client)
@@ -20,7 +21,6 @@ A Go client library for interacting with the ManageAI AI Router service. This pa
 - [Response Structures](#response-structures)
 - [Testing](#testing)
 - [Dependencies](#dependencies)
-- [Environment Variables](#environment-variables)
 - [Best Practices](#best-practices)
 - [Changelog](#changelog)
 - [Release Notes](#release-notes)
@@ -41,13 +41,7 @@ A Go client library for interacting with the ManageAI AI Router service. This pa
 To install the ManageAI Go client, use `go get` to add it to your project:
 
 ```bash
-go get github.com/manageai-inet/Eino-ManageAI-Extension/components/core/manageai@latest
-```
-
-Or to use a specific version:
-
-```bash
-go get github.com/manageai-inet/Eino-ManageAI-Extension/components/core/manageai@v1.0.0
+go get github.com/manageai-inet/Eino-ManageAI-Extension/components/core/manageai
 ```
 
 After installation, run `go mod tidy` to ensure all dependencies are properly resolved:
@@ -55,6 +49,27 @@ After installation, run `go mod tidy` to ensure all dependencies are properly re
 ```bash
 go mod tidy
 ```
+
+## Environment Variables
+
+### Required Environment Variable
+
+**`MAI_BASE_URL`** - The base URL of the ManageAI AI Router service.
+
+> **Note:** The `MAI_BASE_URL` environment variable must be set by the user to point to your ManageAI router service. It is not provided by default due to our policy. Users need to configure this themselves based on their deployment.
+
+```bash
+export MAI_BASE_URL="<manageai-router-service-url>" // not need to add '/v1', the client will handle that
+```
+
+For API Key and Model ID, you can either pass them directly when creating the client or set them as environment variables:
+
+```bash
+export MAI_API_KEY="<your-api-key-here>"
+export MAI_MODEL_ID="qwen3.5" // optional, can also be set when creating the client
+```
+
+All other configuration is passed through the client whether constructor and methods.
 
 ## Quick Start
 
@@ -610,10 +625,6 @@ go test -v ./components/core/manageai/...
 
 - `github.com/eino-contrib/jsonschema` - JSON schema validation
 - `github.com/google/uuid` - UUID generation for message IDs
-
-## Environment Variables
-
-No environment variables required. All configuration is passed through the client constructor and methods.
 
 ## Best Practices
 
