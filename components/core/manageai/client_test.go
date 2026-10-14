@@ -14,7 +14,7 @@ import (
 
 func TestChatCompletion(t *testing.T) {
 	apiKey := os.Getenv("MAI_API_KEY")
-	modelId := "qwen3-vl-235b-a22b-instruct"
+	modelId := "Qwen/Qwen3.8-Flash-Next"
 	// modelId := "Qwen3.5"
 
 	// Create client
@@ -100,7 +100,7 @@ func TestChatCompletion(t *testing.T) {
 		}
 
 		options := &ChatCompletionOptions{}
-		maxTokens := int64(100)
+		maxTokens := int64(1000)
 		temperature := 0.7
 		options.WithMaxTokens(maxTokens).WithTemperature(temperature).WithModel(modelId)
 
@@ -367,7 +367,7 @@ func TestClientConfiguration(t *testing.T) {
 func TestTokenize(t *testing.T) {
 	apiKey := os.Getenv("MAI_API_KEY")
 	// modelId := "Qwen/Qwen3-235B-A22B" //used
-	modelId := "qwen3-235b-a22b"
+	modelId := "Qwen/Qwen3.8-Flash-Next"
 
 	client, err := NewClient(&modelId, apiKey)
 	if err != nil {
@@ -459,7 +459,7 @@ func TestTokenize(t *testing.T) {
 
 func TestChatCompletionStream(t *testing.T) {
 	apiKey := os.Getenv("MAI_API_KEY")
-	modelId := "qwen3-vl-235b-a22b-instruct"
+	modelId := "Qwen/Qwen3.8-Flash-Next"
 
 	// Create client
 	client, err := NewClient(&modelId, apiKey)
@@ -680,7 +680,7 @@ func TestChatCompletionStream(t *testing.T) {
 func TestEmbedding(t *testing.T) {
 	// Test configuration
 	apiKey := os.Getenv("MAI_API_KEY")
-	modelId := "Qwen3-Embedding-8B"
+	modelId := "Qwen/Qwen3-Embedding-8B"
 	// Create client
 	client, err := NewClient(&modelId, apiKey)
 	if err != nil {
@@ -758,7 +758,7 @@ func TestEmbedding(t *testing.T) {
 func TestRerank(t *testing.T) {
 	// Test configuration
 	apiKey := os.Getenv("MAI_API_KEY")
-	modelId := "Qwen3-Reranker-8B"
+	modelId := "Qwen/Qwen3-Reranker-8B"
 	// Create client
 	client, err := NewClient(&modelId, apiKey)
 	if err != nil {
@@ -846,7 +846,7 @@ func TestRerank(t *testing.T) {
 func TestDetokenize(t *testing.T) {
 	// Test configuration
 	apiKey := os.Getenv("MAI_API_KEY")
-	modelId := "qwen3-235b-a22b"
+	modelId := "Qwen/Qwen3.8-Flash-Next"
 	// Create client
 	client, err := NewClient(&modelId, apiKey)
 	if err != nil {
@@ -907,7 +907,7 @@ func (m *mockTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 // ============================================================================
 
 func TestClient_Config(t *testing.T) {
-	model := "qwen3-235b-a22b"
+	model := "Qwen/Qwen3.8-Flash-Next"
 	// apiKey := "test-key"
 	apiKey := os.Getenv("MAI_API_KEY")
 	client, err := NewClient(&model, apiKey)
@@ -965,7 +965,7 @@ func TestClient_NewRequest(t *testing.T) {
 }
 
 func TestClient_RetryLogic(t *testing.T) {
-	model := "qwen3-235b-a22b"
+	model := "Qwen/Qwen3.8-Flash-Next"
 	apiKey := os.Getenv("MAI_API_KEY")
 	client, _ := NewClient(&model, apiKey)
 
