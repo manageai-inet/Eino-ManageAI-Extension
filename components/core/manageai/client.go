@@ -8,6 +8,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -47,14 +48,6 @@ func NewClient(model *string, apiKey string) (*Client, error) {
 	httpClient := &http.Client{
 		Timeout: defaultTimeout,
 	}
-	if model != nil {
-		redirectHelper := GetRedirectHelper()
-		redirectedModel, err := redirectHelper.GetModelId(model, false)
-		if err != nil {
-			return nil, err
-		}
-		model = redirectedModel
-	}
 	return &Client{
 		HTTPClient:   httpClient,
 		Model:        model,
@@ -81,14 +74,6 @@ func GetDefaultClient() (*Client, error) {
 }
 
 func (c *Client) WithModel(model *string) (*Client, error) {
-	if model != nil {
-		redirectHelper := GetRedirectHelper()
-		redirectedModel, err := redirectHelper.GetModelId(model, false)
-		if err != nil {
-			return nil, err
-		}
-		model = redirectedModel
-	}
 	c.Model = model
 	return c, nil
 }
@@ -120,7 +105,8 @@ func (c *Client) NewRequest(ctx context.Context, method string, path string, pay
 		bodyReader = bytes.NewBuffer(payload)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, method, c.BaseURL+path, bodyReader)
+	url := strings.TrimSuffix(c.BaseURL, "/") + "/" + strings.TrimPrefix(path, "/")
+	req, err := http.NewRequestWithContext(ctx, method, url, bodyReader)
 	if err != nil {
 		return nil, err
 	}
@@ -367,17 +353,6 @@ func (c *Client) RequestChatCompletion(ctx context.Context, messages []any, opti
 		if model == nil {
 			model = c.Model
 		}
-		if model != nil {
-			redirectHelper := GetRedirectHelper()
-			ifMultiTools := options.Tools != nil && len(*options.Tools) > 1
-			redirectedModel, err := redirectHelper.GetModelId(model, ifMultiTools)
-			if err != nil {
-				return nil, err
-			}
-			options.Model = redirectedModel
-		} else {
-			return nil, fmt.Errorf("model id is required in options or client configuration for chat completion")
-		}
 	}
 
 	chatCompletion, err := CreateChatCompletion(messages, options)
@@ -430,16 +405,6 @@ func (c *Client) RequestEmbedding(ctx context.Context, input []string, options *
 	if model == nil {
 		model = c.Model
 	}
-	if model != nil {
-		redirectHelper := GetRedirectHelper()
-		redirectedModel, err := redirectHelper.GetModelId(model, false)
-		if err != nil {
-			return nil, err
-		}
-		options.Model = redirectedModel
-	} else {
-		return nil, fmt.Errorf("modelId is required in options or client configuration for embedding")
-	}
 
 	embeddingRequest, err := CreateEmbeddingRequest(input, options)
 	if err != nil {
@@ -490,16 +455,6 @@ func (c *Client) RequestRerank(ctx context.Context, query string, documents []st
 	model := options.Model
 	if model == nil {
 		model = c.Model
-	}
-	if model != nil {
-		redirectHelper := GetRedirectHelper()
-		redirectedModel, err := redirectHelper.GetModelId(model, false)
-		if err != nil {
-			return nil, err
-		}
-		options.Model = redirectedModel
-	} else {
-		return nil, fmt.Errorf("model id is required in options or client configuration for rerank")
 	}
 
 	rerankRequest, err := CreateRerankRequest(query, documents, options)
@@ -552,12 +507,6 @@ func (c *Client) RequestTokenize(ctx context.Context, text string, optionsModel 
 		return nil, fmt.Errorf("model id is required for tokenize")
 	}
 
-	redirectHelper := GetRedirectHelper()
-	redirectedModel, err := redirectHelper.GetModelId(model, false)
-	if err == nil {
-		model = redirectedModel
-	}
-
 	chatData, err := CreateChatCompletion([]any{text}, nil)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create messages: %v", err)
@@ -604,12 +553,6 @@ func (c *Client) RequestChatCompletionStream(ctx context.Context, input []any, o
 	}
 
 	model := c.Model
-	redirectHelper := GetRedirectHelper()
-	redirectedModel, err := redirectHelper.GetModelId(model, false)
-	if err == nil {
-		model = redirectedModel
-	}
-
 	payload := map[string]any{
 		"messages": chatData.Messages,
 		"model":    *model,
@@ -653,16 +596,6 @@ func (c *Client) RequestDetokenize(ctx context.Context, tokens []int, options *D
 	model := options.Model
 	if model == nil {
 		model = c.Model
-	}
-	if model != nil {
-		redirectHelper := GetRedirectHelper()
-		redirectedModel, err := redirectHelper.GetModelId(model, false)
-		if err != nil {
-			return nil, err
-		}
-		options.Model = redirectedModel
-	} else {
-		return nil, fmt.Errorf("modelId is required in options or client configuration for detokenize")
 	}
 
 	detokenizeRequest, err := CreateDetokenizeRequest(tokens, options)
